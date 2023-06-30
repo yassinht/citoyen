@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/services/admin.service';
+import { AgentBService } from 'src/app/services/agent-b.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,8 +11,9 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent implements OnInit {
   isAgentSelected = true; // default to agent login form
+  token:any
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, private router:Router) {
+  constructor(private fb: FormBuilder, private router:Router,private adminService:AdminService ,private agentBService:AgentBService) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -24,10 +27,24 @@ export class AuthComponent implements OnInit {
 
   onLoginFormSubmit() {
     if (this.isAgentSelected) {
-      this.router.navigateByUrl('/agent');
+      this.agentBService.loginagentB(this.loginForm.value).subscribe((data)=>{
+        console.log(data)
+        this.token=data
+        this.router.navigateByUrl('agentb');
+        this.agentBService.saveDataAdmin(this.token)
+      })
 
           } else {
-            this.router.navigateByUrl('admin');
+          
+              this.adminService.loginSAdmin(this.loginForm.value).subscribe((data)=>{
+                console.log(data)
+                this.token=data
+
+                this.adminService.saveDataAdmin(this.token)
+              this.router.navigateByUrl('admin');
+
+              
+            })
 
    }
   }

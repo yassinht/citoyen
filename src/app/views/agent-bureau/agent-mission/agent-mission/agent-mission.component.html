@@ -1,0 +1,162 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Liste des AgentMs</h6>
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addModal">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>lastname</th>
+              <th>tel</th>
+              <th>email</th>
+              <th>responsabilité</th>
+            </tr>
+          </thead>
+       
+          <tbody>
+            <tr *ngFor="let AgentM of AgentMs  ; index as  i">
+              <td>{{i+1}}</td>
+              <td>{{AgentM.name}}</td>
+              <td>{{AgentM.lastname}}</td>
+              <td>{{AgentM.tel}}</td>
+              <td>{{AgentM.email}}</td>
+              <td>{{AgentM.responsabilite.name}}</td>
+              <td>
+                <button type="button" class="btn btn-success btn-sm" (click)="editRow(AgentM)" data-toggle="modal" data-target="#updatemodal">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(AgentM._id)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  
+
+<!-- Add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addModalLabel">Ajout d'un Agent Mission </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="AgentMForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="name">nom</label>
+              <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div class="form-group">
+              <label for="lastname">prenom</label>
+              <input type="text" class="form-control" id="lastname" formControlName="lastname">
+            </div>
+            <div class="form-group">
+              <label for="adresse">Address</label>
+              <input type="text" class="form-control" id="adresse" formControlName="adresse">
+            </div>
+            <div class="form-group">
+              <label for="tel">tél</label>
+              <input type="tel" class="form-control" id="tel" formControlName="tel">
+            </div>
+
+            <div class="form-group">
+  <label for="responsabilite">Category</label>
+  <select class="form-control" id="responsabilite" formControlName="responsabilite">
+    <option value="">Select a category</option>
+    <option *ngFor="let option of categories" [value]="option._id">{{ option.name }}</option>
+  </select>
+</div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" formControlName="password">
+            </div>
+            
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+<!-- update Modal -->
+<div class="modal fade" id="updatemodal" tabindex="-1" role="dialog" aria-labelledby="updatemodalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addModalLabel">Update d'un Agent Mission </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="AgentMForm">
+            <div class="form-group">
+              <label for="name">nom</label>
+              <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div class="form-group">
+              <label for="lastname">prenom</label>
+              <input type="text" class="form-control" id="lastname" formControlName="lastname">
+            </div>
+            <div class="form-group">
+              <label for="adresse">Address</label>
+              <input type="text" class="form-control" id="adresse" formControlName="adresse">
+            </div>
+            <div class="form-group">
+              <label for="tel">tél</label>
+              <input type="tel" class="form-control" id="tel" formControlName="tel">
+            </div>
+
+            <div class="form-group">
+  <label for="responsabilite">Category</label>
+  <select class="form-control" id="responsabilite" formControlName="responsabilite">
+    <option value="">Select a category</option>
+    <option *ngFor="let option of categories" [value]="option._id">{{ option.name }}</option>
+  </select>
+</div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" formControlName="password">
+            </div>
+            
+            <div class="modal-footer">
+              <button (click)="update()" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  

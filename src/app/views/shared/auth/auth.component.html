@@ -1,21 +1,6 @@
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Login</title>
 
 
-</head>
-
-<body class="bg-gradient-primary">
 
     <div class="container">
 
@@ -32,7 +17,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome !</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Bienvenue !</h1>
                                     </div>
                                     
                                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -46,7 +31,7 @@
                                         </label>
                                       </div>
                                       
-                                      <h2>{{ isAgentSelected ? 'Agent' : 'Admin' }} Login</h2>
+                                      <h2>{{ isAgentSelected ? 'Agent' : 'Admin' }} </h2>
                                       <form class="user" [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit()">
                                         <div class="form-group">
                                           <input type="email" class="form-control form-control-user"
@@ -60,19 +45,16 @@
                                         <div class="form-group">
                                           <div class="custom-control custom-checkbox small">
                                             <input type="checkbox" class="custom-control-input" id="customCheck" formControlName="rememberMe">
-                                            <label class="custom-control-label" for="customCheck">Remember Me</label>
                                           </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block" [disabled]="loginForm.invalid">Login</button>
                                         <hr>
                                       </form>
-                                    <hr>
+                           
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="forgot-password.html">Mot de passe oublier?</a>
                                     </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div>
+                              
                                 </div>
                             </div>
                         </div>
@@ -95,6 +77,3 @@
     <!-- Custom scripts for all pages-->
     <script src="../../../../assets/js/sb-admin-2.min.js"></script>
 
-</body>
-
-</html>
